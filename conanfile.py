@@ -27,7 +27,7 @@ class LiunwindConan(ConanFile):
 
     def configure(self):
         del self.settings.compiler.libcxx
-        if self.settings.os not in ["Linux", "FreeBSD", "Macos"]:
+        if self.settings.os not in ["Linux", "FreeBSD"]:
             raise ConanInvalidConfiguration("libunwind is only supported by Unix systems")
 
     def source(self):
