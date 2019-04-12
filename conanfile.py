@@ -27,8 +27,10 @@ class LiunwindConan(ConanFile):
 
     def configure(self):
         del self.settings.compiler.libcxx
-        if self.settings.os not in ["Linux", "FreeBSD"]:
-            raise ConanInvalidConfiguration("libunwind is only supported by Unix systems")
+        if self.settings.os == "Windows" and self.settings.compiler == "Visual Studio":
+            raise ConnectionAbortedError("libunwind can not be built by Visual Studio")
+        elif self.settings.os not in ["Linux", "FreeBSD", "Windows"]:
+            raise ConanInvalidConfiguration("libunwind is not supported by your platform")
 
     def source(self):
         sha256 = "43997a3939b6ccdf2f669b50fdb8a4d3205374728c2923ddc2354c65260214f8"
