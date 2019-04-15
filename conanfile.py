@@ -26,10 +26,7 @@ class LiunwindConan(ConanFile):
         return "source_subfolder"
 
     def configure(self):
-        del self.settings.compiler.libcxx
-        if self.settings.os == "Windows" and self.settings.compiler == "Visual Studio":
-            raise ConnectionAbortedError("libunwind can not be built by Visual Studio")
-        elif self.settings.os not in ["Linux", "FreeBSD", "Windows"]:
+        if self.settings.os not in ["Linux", "FreeBSD"]:
             raise ConanInvalidConfiguration("libunwind is not supported by your platform")
 
     def source(self):
