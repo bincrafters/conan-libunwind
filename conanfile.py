@@ -29,6 +29,7 @@ class LiunwindConan(ConanFile):
         if self.settings.os not in ["Linux", "FreeBSD"]:
             raise ConanInvalidConfiguration("libunwind is not supported by your platform")
         del self.settings.compiler.libcxx
+        del self.settings.compiler.cppstd
 
     def source(self):
         sha256 = "43997a3939b6ccdf2f669b50fdb8a4d3205374728c2923ddc2354c65260214f8"
