@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from conans import ConanFile, AutoToolsBuildEnvironment, tools
 from conans.errors import ConanInvalidConfiguration
 import os
@@ -12,7 +10,6 @@ class LiunwindConan(ConanFile):
     topics = ("conan", "libunwind", "unwind", "debuggers", "exception-handling", "introspection", "setjmp")
     url = "https://github.com/bincrafters/conan-libunwind"
     homepage = "https://github.com/libunwind/libunwind"
-    author = "Bincrafters <bincrafters@gmail.com>"
     license = "MIT"
     exports = ["LICENSE.md"]
     settings = "os", "arch", "compiler", "build_type"
