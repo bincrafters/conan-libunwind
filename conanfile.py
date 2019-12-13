@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from conans import ConanFile, AutoToolsBuildEnvironment, tools
 from conans.errors import ConanInvalidConfiguration
 import os
@@ -12,13 +10,12 @@ class LiunwindConan(ConanFile):
     topics = ("conan", "libunwind", "unwind", "debuggers", "exception-handling", "introspection", "setjmp")
     url = "https://github.com/bincrafters/conan-libunwind"
     homepage = "https://github.com/libunwind/libunwind"
-    author = "Bincrafters <bincrafters@gmail.com>"
     license = "MIT"
     exports = ["LICENSE.md"]
     settings = "os", "arch", "compiler", "build_type"
     options = {"shared": [True, False], "fPIC": [True, False], "coredump": [True, False], "ptrace": [True, False], "setjmp": [True, False]}
     default_options = {"shared": False, "fPIC": True, "coredump": True, "ptrace": True, "setjmp": True}
-    requires = "lzma/5.2.4@bincrafters/stable"
+    requires = "xz_utils/5.2.4"
     _autotools = None
 
     @property
@@ -29,6 +26,7 @@ class LiunwindConan(ConanFile):
         if self.settings.os not in ["Linux", "FreeBSD"]:
             raise ConanInvalidConfiguration("libunwind is not supported by your platform")
         del self.settings.compiler.libcxx
+        del self.settings.compiler.cppstd
 
     def source(self):
         sha256 = "43997a3939b6ccdf2f669b50fdb8a4d3205374728c2923ddc2354c65260214f8"
